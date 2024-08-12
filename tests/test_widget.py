@@ -20,7 +20,6 @@ def test_account_number(account_number: str) -> None:
     "input_date, expected_date", [("2023-01-01T12:00:00", "01.01.2023"), ("2018-10-14T08:21:33.419441", "14.10.2018")]
 )
 def test_date_parametrize(input_date: str, expected_date: str) -> None:
-
     result = get_date(input_date)
     assert result == expected_date
 

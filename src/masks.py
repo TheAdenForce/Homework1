@@ -1,22 +1,19 @@
 def get_mask_card_number(card_number: str) -> str:
-    """ Разбиваем номер карты на части """
-    first_block = card_number[:4]
-    second_block = card_number[4:6]
-    fourth_block = card_number[12:] if len(card_number) > 12 else ""
-
-    """ Формируем замаскированный номер карты """
-    masked_card_number = f"{first_block} {second_block}** ****  {fourth_block}"
-
-    return masked_card_number
+    """Функция возвращает замаскированный номер карты"""
+    if card_number.isdigit() and len(card_number) == 16:
+        masked_number = f"{card_number[0:4]} {card_number[4:6]}** **** {card_number[-4:]}"
+        return masked_number
+    else:
+        raise ValueError("Ошибка! Номер карты должен состоять из 16 цифр без пробелов.")
 
 
 def get_mask_account(account_number: str) -> str:
-    """ Берем последние 4 символа номера счета """
-    last_four_digits = account_number[-4:]
+    """Функция возвращает замаскированный номер аккаунта"""
+    if account_number.isdigit() and len(account_number) == 20:
+        masked_account = f"**{account_number[-4:]}"
+        return masked_account
+    else:
+        raise ValueError("Ошибка! Номер карты должен состоять из 20 цифр без пробелов.")
 
-    """ Формируем замаскированный номер счета """
-    masked_account_number = f"**{last_four_digits}"
-
-    return masked_account_number
 
 

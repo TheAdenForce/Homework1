@@ -38,6 +38,13 @@ python manage.py runserver
 ## Тестирование:
 Покрытие тестами: 95%
 
+Добавлены  следущие функции:
+- filter_by_currency(dict_list, currency)
+    """Функция для вывода валюты транзакции"""
+- transaction_descriptions(dict_transaction)
+    """Функция для возврата описания транзакции"""
+- card_number_generator(start, stop)
+    """Генерация последовательности номеров карт в заданном диапазоне """
 ## Лицензия:
 
 Проект распространяется под [лицензией MIT](LICENSE).

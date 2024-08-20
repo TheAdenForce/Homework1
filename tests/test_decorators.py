@@ -28,7 +28,7 @@ def test_log_raise_error(tmpdir):
     @log(error_info)
     def result(x, y):
         if y == 0:
-            raise ZeroDivisionError("Ну че ты делишь то?")
+            raise ZeroDivisionError("Так делить нельзя")
         else:
             nums = x / y
             return nums
@@ -65,7 +65,7 @@ def test_log_capsys_error(capsys):
     @log()
     def result(x, y):
         if y == 0:
-            raise ZeroDivisionError("Ну че ты делишь то?")
+            raise ZeroDivisionError("Так делить нельзя")
         else:
             nums = x / y
             return nums

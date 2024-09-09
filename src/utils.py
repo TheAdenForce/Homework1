@@ -10,7 +10,7 @@ logging.basicConfig(
     format="%(levelname)s: %(filename)s: %(funcName)s %(lineno)s: %(asctime)s - %(message)s",
     filename="../logs/utils_log.log",
     filemode="w",
-    )
+)
 financial_transactions_logger = logging.getLogger()
 transaction_amount_logger = logging.getLogger()
 

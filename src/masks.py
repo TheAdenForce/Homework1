@@ -1,3 +1,15 @@
+import logging
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(levelname)s: %(filename)s: %(funcName)s %(lineno)s: %(asctime)s - %(message)s",
+    filename="../logs/masks_log.log",
+    filemode="w",
+    )
+card_number_logger = logging.getLogger()
+mask_account_logger = logging.getLogger()
+
+
 def get_mask_card_number(card_number: str) -> str:
     """Функция возвращает замаскированный номер карты"""
     if card_number.isdigit() and len(card_number) == 16:

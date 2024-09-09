@@ -61,7 +61,11 @@ python manage.py runserver
 ## Модуль external_api
 1. Функция конвертации currency_conversion, используется функцией transaction_amount, если валюта транзакции не рубль.
 
-
+###### Логирование
+1. Файлы логов записываются в папку logs
+2. Для модуля masks.py - masks_log.log
+3. Для модуля utils.py - utils_log.log
+4. Файлы логов перезаписываемые
 
 ## Лицензия:
 

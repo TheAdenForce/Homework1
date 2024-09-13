@@ -26,7 +26,7 @@ def trans_1():
 @patch('requests.get')
 def test_currency_conversion(mock_get, trans_1):
     mock_get.return_value.json.return_value = {'success': True, 'query':
-                                               {'from': 'USD', 'to': 'RUB', 'amount': 8221.37}, 'info':
-                                               {'timestamp': 1724671757, 'rate': 91.475458},
+        {'from': 'USD', 'to': 'RUB', 'amount': 8221.37}, 'info':
+                                                   {'timestamp': 1724671757, 'rate': 91.475458},
                                                'date': '2024-08-26', 'result': 752053.586137}
     assert currency_conversion(trans_1) == 752053.586137

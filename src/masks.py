@@ -7,7 +7,7 @@ logging.basicConfig(
     filemode="w",
 )
 card_number_logger = logging.getLogger()
-mask_account_logger = logging.getLogger()
+masks_logger = logging.getLogger('masks')
 
 
 def get_mask_card_number(card_number: int) -> str:
@@ -24,9 +24,9 @@ def get_mask_card_number(card_number: int) -> str:
 def get_mask_account(account_number: int) -> str:
     """Функция принимает на вход номер счета и возвращает его маску.
     **4305"""
-    mask_account_logger.info("Создаю маску номера счета")
+    masks_logger.info("Создаю маску номера счета")
     if len(str(account_number)) != 20:
-        mask_account_logger.error("Неправильный номер счета")
+        masks_logger.error("Неправильный номер счета")
         raise ValueError("Неправильный номер счета")
-    mask_account_logger.info("Маска номера счета создана")
+    masks_logger.info("Маска номера счета создана")
     return f"**{int(str(account_number)[-4:])}"

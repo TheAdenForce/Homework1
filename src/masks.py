@@ -5,7 +5,7 @@ logging.basicConfig(
     format="%(levelname)s: %(filename)s: %(funcName)s %(lineno)s: %(asctime)s - %(message)s",
     filename="../logs/masks_log.log",
     filemode="w",
-    )
+)
 card_number_logger = logging.getLogger()
 mask_account_logger = logging.getLogger()
 
@@ -30,4 +30,3 @@ def get_mask_account(account_number: int) -> str:
         raise ValueError("Неправильный номер счета")
     mask_account_logger.info("Маска номера счета создана")
     return f"**{int(str(account_number)[-4:])}"
-

@@ -28,4 +28,3 @@ def test_mask_account_no_number_invalid():
 def test_mask_account_number_invalid():
     with pytest.raises(ValueError):
         get_mask_account(70007922896063618758432098776)
-

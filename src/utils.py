@@ -6,34 +6,33 @@ from typing import Any
 from src.external_api import currency_conversion
 
 utils_logger = logging.getLogger('utils')
-
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(levelname)s: %(filename)s: %(funcName)s %(lineno)s: %(asctime)s - %(message)s",
-    filename="../logs/utils_log.log",
-    filemode="w",
-)
-financial_transactions_logger = logging.getLogger()
-transaction_amount_logger = logging.getLogger()
+# создаем обработчик, который будет писать в файл, режим w
+file_handler = logging.FileHandler("../logs/utils_log.log", 'w')
+# создаём форматтер, задаём нужный нам формат
+file_formatter = logging.Formatter("%(levelname)s: %(filename)s: %(funcName)s %(lineno)s: %(asctime)s - %(message)s")
+# соединяем. Форматтер к обработчику, обработчик к логгеру
+file_handler.setFormatter(file_formatter)
+utils_logger.addHandler(file_handler)
+utils_logger.setLevel(logging.INFO)
 
 
 def financial_transactions(path: str) -> list:
     """Функция принимает на вход путь до JSON-файла и возвращает список словарей с данными о финансовых транзакциях."""
     try:
-        financial_transactions_logger.info("Открываю файл с транзакциями")
+        utils_logger.info("Открываю файл с транзакциями")
         with open(path, encoding="utf-8") as financial_file:
             try:
                 transactions = json.load(financial_file)
             except JSONDecodeError:
-                financial_transactions_logger.error("Ошибка файла с транзакциями")
+                utils_logger.error("Ошибка файла с транзакциями")
                 return []
         if not isinstance(transactions, list):
-            financial_transactions_logger.error("Список транзакций пуст")
+            utils_logger.error("Список транзакций пуст")
             return []
-        financial_transactions_logger.info("Создан список словарей с данными о финансовых транзакциях")
+        utils_logger.info("Создан список словарей с данными о финансовых транзакциях")
         return transactions
     except FileNotFoundError:
-        financial_transactions_logger.error("Файл с транзакциями не найден")
+        utils_logger.error("Файл с транзакциями не найден")
         return []
 
 
@@ -41,8 +40,8 @@ def transaction_amount(trans: dict, currency: str = "RUB") -> Any:
     """Функция принимает на вход транзакцию и возвращает сумму транзакции в рублях"""
     if trans["operationAmount"]["currency"]["code"] == currency:
         amount = trans["operationAmount"]["amount"]
-        transaction_amount_logger.info("Код валюты в транзакции RUB")
+        utils_logger.info("Код валюты в транзакции RUB")
     else:
         amount = currency_conversion(trans)
-        transaction_amount_logger.info("Код валюты транзакции не RUB, произведена конвертация")
+        utils_logger.info("Код валюты транзакции не RUB, произведена конвертация")
     return amount
